@@ -1,6 +1,6 @@
-# sendmail-ses cookbook
+# postfix-ses cookbook
 
-Integrates postfix with Amazon SES.  This cookbooks duplicates this [doc](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/postfix.html) except rather then adding the configurations directly to the sendmail.mc file.  It is included as a seperate file.
+Integrates postfix with Amazon SES.  This cookbooks duplicates this [doc](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/postfix.html) except rather then adding the configurations directly to the sendmail.mc file.  It is included as a seperate file. This cookbook was adapted specifically so as to work with opswork
 
 # Requirements
 
@@ -10,16 +10,19 @@ Tested with the Amazon platform.
 # Usage
 
 Populate the sendmail attribute and include the default recipe `recipe[sendmail-ses::default]`.
+This cookbook is adpated to work with opswork so you would have to set at least the following in your stack settings:
+```json
+    "postfix" : {
+	"sasl" : {
+	    "smtp_sasl_user_name" : "secret",
+	    "smtp_sasl_passwd" : "secret"
+	}
+    },
+```
+
 
 # Attributes
 
-* `sendmail_ses` a hash of attributes. REQUIRED
-  * `username` ses username.  REQUIRED
-  * `password` ses password.  REQUIRED
-  * `domain` domain where email will be sent from.  REQUIRED
-  * `port` tcp port. Default is 25
-  * `test_user` SES verified user to send from.  IE <test_user>@<domain>
-  * `test_email` Send a test email to the given address.
 
 # Recipes
 
