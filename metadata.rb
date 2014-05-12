@@ -11,4 +11,4 @@ version          '0.1.1'
 end
 
 depends 'postfix'
-depends 'postfix::sasl_auth'
+
